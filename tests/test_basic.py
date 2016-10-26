@@ -10,7 +10,8 @@ def skipIf(condition, reason):
     if condition:
         return lambda x: x
     else:
-        raise SkipTest(reason)
+        print("wtf")
+        def dummy(*a, **kw): raise SkipTest(reason)
 
 from nose.plugins import PluginTester
 from nose_randomly import RandomlyPlugin
@@ -18,11 +19,12 @@ from nose_randomly import RandomlyPlugin
 fixtures = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 try:
-    import numpy as _
+    import numpy as _ # noqa: F401
     have_numpy = True
 except ImportError:
     have_numpy = False
 
+have_numpy =False
 
 class RandomlyPluginTester(PluginTester):
     activate = '--with-randomly'
