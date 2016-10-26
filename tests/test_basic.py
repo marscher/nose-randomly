@@ -20,7 +20,7 @@ from nose_randomly import RandomlyPlugin
 fixtures = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 try:
-    import numpy as np
+    import numpy as _
     have_numpy = True
 except ImportError:
     have_numpy = False
@@ -216,6 +216,7 @@ class RandomSeedClassTest(RandomlyPluginTester, TestCase):
             'test_random (random_number_class.Tests) ... ok',
         ])
 
+
 @skipIf(not have_numpy, 'no numpy')
 class RandomSeedClassTestNP(RandomlyPluginTester, TestCase):
     """
@@ -249,6 +250,7 @@ class DontRandomSeedTest(RandomlyPluginTester, TestCase):
             'Using --randomly-seed=1',
             'test_not_reseeded_to_100 (random_seed_not_100.Tests) ... ok'
         ])
+
 
 @skipIf(not have_numpy, 'no numpy')
 class DontRandomSeedTestNP(RandomlyPluginTester, TestCase):
