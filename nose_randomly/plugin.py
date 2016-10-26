@@ -37,7 +37,6 @@ else:
 
 class RandomlyPlugin(Plugin):
     name = str('randomly')
-    # TODO: no score set?
 
     def options(self, parser, env):
         """Register commandline options.
