@@ -8,10 +8,7 @@ from unittest import TestCase
 try:
     from unittest import skipIf
 except ImportError:
-    def skip(f):
-        return lambda self: None
-
-    def skipUnless(condition, reason):
+    def skipIf(condition, reason):
         if condition:
             return lambda x: x
         else:
