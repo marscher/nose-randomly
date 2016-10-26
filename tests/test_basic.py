@@ -5,14 +5,12 @@ import os
 import sys
 from unittest import TestCase
 # basic impl for skipIf for old Python (<2.7)
-try:
-    from unittest import skipIf
-except ImportError:
-    def skipIf(condition, reason):
-        if condition:
-            return lambda x: x
-        else:
-            return lambda x: None
+from nose.plugins.skip import SkipTest
+def skipIf(condition, reason):
+    if condition:
+        return lambda x: x
+    else:
+        raise SkipTest(reason)
 
 from nose.plugins import PluginTester
 from nose_randomly import RandomlyPlugin
