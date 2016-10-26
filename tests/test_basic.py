@@ -3,7 +3,19 @@ from __future__ import unicode_literals
 
 import os
 import sys
-from unittest import TestCase, skipIf
+from unittest import TestCase
+# basic impl for skipIf for old Python (<2.7)
+try:
+    from unittest import skipIf
+except ImportError:
+    def skip(f):
+        return lambda self: None
+
+    def skipUnless(condition, reason):
+        if condition:
+            return lambda x: x
+        else:
+            return lambda x: None
 
 from nose.plugins import PluginTester
 from nose_randomly import RandomlyPlugin
