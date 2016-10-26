@@ -4,27 +4,12 @@ from __future__ import unicode_literals
 import os
 import sys
 from unittest import TestCase
-# basic impl for skipIf for old Python (<2.7)
-from nose.plugins.skip import SkipTest
-def skipIf(condition, reason):
-    if condition:
-        return lambda x: x
-    else:
-        print("wtf")
-        def dummy(*a, **kw): raise SkipTest(reason)
 
 from nose.plugins import PluginTester
 from nose_randomly import RandomlyPlugin
 
 fixtures = os.path.join(os.path.dirname(__file__), 'fixtures')
 
-try:
-    import numpy as _ # noqa: F401
-    have_numpy = True
-except ImportError:
-    have_numpy = False
-
-have_numpy =False
 
 class RandomlyPluginTester(PluginTester):
     activate = '--with-randomly'
@@ -182,7 +167,6 @@ class RandomSeedTest(RandomlyPluginTester, TestCase):
         ])
 
 
-@skipIf(not have_numpy, 'no numpy')
 class RandomSeedTestNP(RandomlyPluginTester, TestCase):
     """
     Check that the random seed is being set.
@@ -217,7 +201,6 @@ class RandomSeedClassTest(RandomlyPluginTester, TestCase):
         ])
 
 
-@skipIf(not have_numpy, 'no numpy')
 class RandomSeedClassTestNP(RandomlyPluginTester, TestCase):
     """
     Check that the random seed is being set for any code that might run in
@@ -252,7 +235,6 @@ class DontRandomSeedTest(RandomlyPluginTester, TestCase):
         ])
 
 
-@skipIf(not have_numpy, 'no numpy')
 class DontRandomSeedTestNP(RandomlyPluginTester, TestCase):
     """
     Check that the random seed is being set.

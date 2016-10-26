@@ -4,3 +4,4 @@ isort
 multilint
 nose
 Pygments
+numpy
