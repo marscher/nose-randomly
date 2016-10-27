@@ -167,12 +167,12 @@ class RandomSeedTest(RandomlyPluginTester, TestCase):
         ])
 
 
-class RandomSeedTestNP(RandomlyPluginTester, TestCase):
+class RandomSeedTestNumPy(RandomlyPluginTester, TestCase):
     """
     Check that the random seed is being set.
     """
     args = ['-v', '--randomly-seed=1']
-    fixture_suite = 'random_number_np.py'
+    fixture_suite = 'random_number_numpy.py'
 
     def runTest(self):
         # Just runs the test - the remaining logic is in the file itself,
@@ -201,24 +201,6 @@ class RandomSeedClassTest(RandomlyPluginTester, TestCase):
         ])
 
 
-class RandomSeedClassTestNP(RandomlyPluginTester, TestCase):
-    """
-    Check that the random seed is being set for any code that might run in
-    setUpClass too.
-    """
-    args = ['-v', '--randomly-seed=1']
-    fixture_suite = 'random_number_class_np.py'
-
-    def runTest(self):
-        # Just runs the test - the remaining logic is in the file itself,
-        # checking that random.random() gives result it should when seed = 1
-        self.check_output_like([
-            'Using --randomly-seed=1',
-            'test_random_again (random_number_class_np.TestsAgain) ... ok',
-            'test_random (random_number_class_np.Tests) ... ok',
-        ])
-
-
 class DontRandomSeedTest(RandomlyPluginTester, TestCase):
     """
     Check that the random seed is being set.
@@ -232,22 +214,6 @@ class DontRandomSeedTest(RandomlyPluginTester, TestCase):
         self.check_output_like([
             'Using --randomly-seed=1',
             'test_not_reseeded_to_100 (random_seed_not_100.Tests) ... ok'
-        ])
-
-
-class DontRandomSeedTestNP(RandomlyPluginTester, TestCase):
-    """
-    Check that the random seed is being set.
-    """
-    args = ['-v', '--randomly-seed=1', '--randomly-dont-reset-seed']
-    fixture_suite = 'random_seed_not_100_np.py'
-
-    def runTest(self):
-        # Just runs the test - the remaining logic is in the file itself,
-        # checking that random.random() does not look like the seed is 100
-        self.check_output_like([
-            'Using --randomly-seed=1',
-            'test_not_reseeded_to_100 (random_seed_not_100_np.Tests) ... ok'
         ])
 
 

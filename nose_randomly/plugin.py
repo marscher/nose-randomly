@@ -118,8 +118,9 @@ class RandomlyPlugin(Plugin):
 
     @property
     def random_state_numpy(self):
+        # numpy uses its own random state implementation.
         if not have_numpy:
-            raise NotImplementedError()
+            raise RuntimeError('numpy not installed')
         if not hasattr(self, '_random_state_numpy'):
             np_random.seed(self.options.seed)
             self._random_state_numpy = np_random.get_state()
