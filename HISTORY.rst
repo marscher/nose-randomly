@@ -6,7 +6,8 @@ History
 Pending release
 ---------------
 
-* Added optional support for NumPy random state.
+* New release notes here
+* Reset the random state for NumPy too.
 
 1.2.3 (2016-08-19)
 ------------------
