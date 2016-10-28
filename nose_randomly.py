@@ -41,6 +41,7 @@ __version__ = '1.2.4'
 
 class RandomlyPlugin(Plugin):
     name = str('randomly')
+    score = 10000  # we use a high score, to ensure randomly gets executed first.
 
     def options(self, parser, env):
         """Register commandline options.

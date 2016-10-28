@@ -7,6 +7,8 @@ Pending release
 ---------------
 
 * New release notes here
+* Set a high Nosetests plugin score to ensure the plugin works
+  together with plugins like coverage.
 
 1.2.4 (2016-10-27)
 ------------------
